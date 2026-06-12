@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — Same Sky Collective Society</title>
+<meta name="description" content="Art shows, fundraisers, workshops and weekend pop-up drop-in supports at Same Sky Collective, 417 Tranquille Rd, Kamloops.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Same Sky Collective Society home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="22" r="8" fill="#f28c28"/><path d="M0 26 Q8.5 18 17 26 T34 26 V34 H0 Z" fill="#2ec4b6" opacity="0.85"/><circle cx="9" cy="9" r="1.5" fill="#fff"/><circle cx="25" cy="6" r="1" fill="#fff"/><circle cx="29" cy="13" r="1.2" fill="#fff"/></svg>
+      Same Sky Collective
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" onclick="toggleNav(this)">☰</button>
+    <nav class="main-nav" id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html" aria-current="page">Events</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="support.html">Support Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero" style="padding:2.5rem 0;">
+  <div class="container">
+    <h1>Events</h1>
+    <p class="tagline">Shows, fundraisers, workshops, and weekly community supports — all under the same sky.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <h2>Upcoming</h2>
+    <div class="note-placeholder">Template — replace with real dates. Events can also be cross-posted to the collective's Eventbrite and Facebook pages.</div>
+
+    <div class="event">
+      <div class="event-date"><span class="month">Jun</span><span class="day">21</span></div>
+      <div>
+        <h3>[Event title — e.g. Solstice Art Show &amp; Sale]</h3>
+        <p>6–9 pm · Same Sky Collective, 417 Tranquille Rd</p>
+        <p>Short description of the event, who it's for, and whether tickets or donations are involved.</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-date"><span class="month">Jun</span><span class="day">28</span></div>
+      <div>
+        <h3>[Event title — e.g. Open Studio Saturday]</h3>
+        <p>12–4 pm · Same Sky Collective</p>
+        <p>Drop in, meet the artists, make something. All ages, no cost.</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-date"><span class="month">Wkly</span><span class="day">Sun</span></div>
+      <div>
+        <h3>Pop-up drop-in supports</h3>
+        <p>Sundays · behind the studio, 417 Tranquille Rd</p>
+        <p>Grassroots volunteers and peers with lived experience offer meals, essentials, and connection. Everyone welcome, no barriers. (Run with the Nomads volunteer network.)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <h2>Host or sponsor an event</h2>
+    <p style="max-width:40em;">Local fundraising events are one of the main ways we keep going. If your business, band, or community group wants to put something on with us — or sponsor a show — we'd love to hear from you.</p>
+    <a class="btn btn-primary" href="mailto:hello@example.com?subject=Event%20idea">Get in touch</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Same Sky Collective Society</h4>
+      <p>Non-profit community art studio &amp; gallery<br>417 Tranquille Rd, Kamloops BC</p>
+      <p class="land-ack">We gratefully operate on the traditional, unceded territory of the Tk'emlúps te Secwépemc within Secwepemcúl'ecw.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="support.html">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/thesameskycollective/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/groups/sameskycollectivesociety/">Facebook</a></li>
+        <li><a href="mailto:hello@example.com">Email us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-note">
+    <p>© 2026 Same Sky Collective Society. Registered non-profit society, British Columbia.</p>
+  </div>
+</footer>
+
+<script>
+function toggleNav(btn){
+  const nav = document.getElementById('nav');
+  const open = nav.classList.toggle('open');
+  btn.setAttribute('ari
