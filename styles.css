@@ -91,7 +91,28 @@ img { max-width: 100%; display: block; }
 }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: #ffd9ae; }
 
+.quick-links {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.55rem 1.25rem;
+  background: var(--sky-mid);
+}
+.quick-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  padding: 0.35rem 0.95rem;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: 999px;
+}
+.quick-links a.ql-donate { background: var(--rose); border-color: var(--rose); color: #06332e; }
+
 @media (min-width: 800px) {
+  .quick-links { display: none; }
   .nav-toggle { display: none; }
   .main-nav { display: block; width: auto; }
   .main-nav ul { display: flex; gap: 1.4rem; padding: 0; }
