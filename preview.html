@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.className+=' js';</script>
-<title>Same Sky Collective — home v4</title>
+<title>Same Sky Collective — home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Caveat:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -53,12 +53,12 @@ html:not(.js) .bar nav{position:static;flex-direction:row;max-height:none;opacit
 @keyframes drop{0%{transform:translateY(-6px);opacity:0}40%{opacity:1}100%{transform:translateY(12px);opacity:0}}
 @media(prefers-reduced-motion:reduce){.cue span{animation:none;} html{scroll-behavior:auto;} *{transition:none !important;}}
 section{padding:4vh 0;}
-html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;} html.js .reveal.in{opacity:1;transform:none;}
+.reveal{animation:ssrise .7s ease both;} @keyframes ssrise{from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none}} @media(prefers-reduced-motion:reduce){.reveal{animation:none;}}
 .kicker{display:inline-block;font-family:'Quicksand';font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--turq);margin-bottom:.9rem;}
 h2.big{font-size:clamp(1.9rem,5vw,3rem);max-width:22ch;margin-bottom:.9rem;} .lead{font-size:clamp(1.05rem,2.1vw,1.25rem);max-width:46ch;color:var(--soft);}
 .stat{text-align:center;} .stat .n{font-family:'Quicksand';font-weight:700;font-size:clamp(6rem,22vw,15rem);line-height:.85;} .stat p{max-width:26ch;margin:.6rem auto 0;color:var(--soft);}
-#stat70{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
-html.js #stat70{--fill:0%;background:linear-gradient(to top,#15b6bd 0%,#3a9fd8 var(--fill),#e7e0d2 var(--fill));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+#stat70{--fill:0%;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+#stat70.pouring{background:linear-gradient(to top,#15b6bd 0%,#3a9fd8 var(--fill),#e7e0d2 var(--fill));}
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:1.8rem;} @media(max-width:760px){.cards3{grid-template-columns:1fr;max-width:460px;margin-inline:auto;}}
 .cards3 .c{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.4rem;} .cards3 .c h4{font-size:1.08rem;margin-bottom:.3rem;} .cards3 .c p{color:var(--soft);font-size:.96rem;}
 .adv .c{overflow:hidden;padding:0;display:flex;flex-direction:column;} .adv .c img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#eee;} .adv .c .cc{padding:1.1rem 1.2rem;}
@@ -160,7 +160,7 @@ footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;paddi
 <div class="give">
 <div class="card"><h3 style="margin-bottom:.5rem;">What your gift does</h3>
 <div class="tier"><b>$100</b><span>snacks &amp; cold drinks for a week</span></div>
-<div class="tier"><b>$250</b><span>honoraria to run a support group</span></div>
+<div class="tier"><b>$250</b><span>Honoraria to run a support group</span></div>
 <div class="tier" style="border-bottom:none;"><b>Any</b><span>keeps the lights on for someone who needs this space</span></div>
 <div class="campaign"><b>🐾 Toonies for Zsa Zsa</b> — with 4 Paws &amp; Riverside Animal Hospital, for Ms. Gabor's dental surgery.
 <div class="meter"><i></i></div><small style="color:var(--soft);">$2,000 raised · $1,500 to go</small></div></div>
@@ -179,4 +179,71 @@ footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;paddi
 <p class="fine">We can't offer tax receipts.</p></div>
 <div><h4>Connect</h4><p class="social">
 <a href="https://www.instagram.com/thesameskycollective/" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg> Instagram</a><br>
-<a hr
+<a href="https://www.facebook.com/groups/sameskycollectivesociety/" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg> Facebook</a><br>
+<a href="mailto:sameskycollective@gmail.com" aria-label="Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Email</a>
+</p></div>
+</div></footer>
+
+<script>
+(function(){
+var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+
+/* Background canvas (isolated; failure here can never blank the page — content visibility is pure CSS) */
+(function(){
+  try{
+    var c=document.getElementById('sky');if(!c)return;var x=c.getContext('2d');if(!x)return;
+    var W,H,dpr,clouds=[],fl=[];
+    var COL=['#e5408a','#f47a23','#f7c233','#15b6bd','#7cc24a','#3a9fd8'];
+    var small=function(){return innerWidth<760;};
+    function size(){dpr=Math.min(devicePixelRatio||1,small()?1.5:2);W=c.width=innerWidth*dpr;H=c.height=innerHeight*dpr;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
+    function rnd(a,b){return a+Math.random()*(b-a);}
+    function mkC(){return{x:rnd(0,W),y:rnd(0,H*0.6),r:rnd(H*0.12,H*0.3),s:rnd(0.03,0.12)*dpr,a:rnd(0.5,0.85)};}
+    function mkF(seed){return{x:rnd(0,W),y:seed?rnd(0,H):-30,vy:rnd(0.22,0.6)*dpr,sway:rnd(0.3,0.9),ph:rnd(0,6.3),r:rnd(8,15)*dpr,rot:rnd(0,6.3),vr:rnd(-0.009,0.009),col:COL[(Math.random()*COL.length)|0],a:rnd(0.4,0.7)};}
+    function build(){clouds=[];fl=[];var nc=small()?3:6,nf=small()?4:9;for(var i=0;i<nc;i++)clouds.push(mkC());for(var j=0;j<nf;j++)fl.push(mkF(true));}
+    function base(){var g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#eaf4f1');g.addColorStop(1,'#fdf8f0');x.fillStyle=g;x.fillRect(0,0,W,H);}
+    function cloud(o){o.x+=o.s;if(o.x-o.r>W)o.x=-o.r;var rg=x.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);rg.addColorStop(0,'rgba(255,255,255,'+o.a*0.6+')');rg.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=rg;x.beginPath();x.ellipse(o.x,o.y,o.r,o.r*0.5,0,0,6.2832);x.fill();}
+    function daisy(p){x.save();x.translate(p.x,p.y);x.rotate(p.rot);x.globalAlpha=p.a;var n=13;for(var i=0;i<n;i++){x.rotate(6.2832/n);x.beginPath();x.ellipse(0,-p.r,p.r*0.17,p.r,0,0,6.2832);x.fillStyle=p.col;x.fill();}x.beginPath();x.arc(0,0,p.r*0.42,0,6.2832);x.fillStyle='#6b431d';x.fill();x.beginPath();x.arc(0,0,p.r*0.27,0,6.2832);x.fillStyle='#d2a23f';x.fill();x.restore();x.globalAlpha=1;}
+    function stepF(p){p.ph+=0.01;p.x+=Math.sin(p.ph)*p.sway*dpr;p.y+=p.vy;p.rot+=p.vr;if(p.y-p.r>H)Object.assign(p,mkF(false));daisy(p);}
+    function still(){base();clouds.forEach(cloud);fl.forEach(daisy);}
+    function frame(){base();clouds.forEach(cloud);fl.forEach(stepF);requestAnimationFrame(frame);}
+    function init(){size();build();if(reduce){still();}else frame();}
+    addEventListener('resize',function(){try{size();build();if(reduce)still();}catch(e){}});
+    init();
+  }catch(e){}
+})();
+
+/* Sticky-header shadow + 70% liquid pour */
+(function(){
+  try{
+    var bar=document.querySelector('.bar');
+    var stat=document.getElementById('stat70'),poured=false;
+    if(reduce)poured=true;
+    function pour(){if(!stat||poured)return;poured=true;stat.classList.add('pouring');var t0=Date.now();(function tick(){var p=Math.min(1,(Date.now()-t0)/1500);var e=1-Math.pow(1-p,3);stat.style.setProperty('--fill',(e*100).toFixed(1)+'%');if(p<1){requestAnimationFrame(tick);}else{stat.classList.remove('pouring');}})();}
+    function onScroll(){if(bar)bar.classList.toggle('scrolled',(window.pageYOffset||0)>40);if(stat&&!poured&&stat.getBoundingClientRect().top<innerHeight*0.82)pour();}
+    addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  }catch(e){}
+})();
+
+/* Mobile nav toggle */
+(function(){
+  try{
+    var btn=document.getElementById('navtoggle'),nav=document.getElementById('primarynav');
+    if(!btn||!nav)return;
+    function closeNav(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+    nav.addEventListener('click',function(e){if(e.target.closest('a'))closeNav();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav();});
+    addEventListener('resize',function(){if(innerWidth>820)closeNav();});
+  }catch(e){}
+})();
+
+/* PayPal QR */
+(function(){
+  try{
+    if(typeof QRCode==='undefined'||!document.getElementById('qr'))return;
+    new QRCode(document.getElementById('qr'),{text:'https://www.paypal.com/qrcodes/p2pqrc/4BWPM5TCAXKJQ',width:104,height:104,colorDark:'#16384f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+  }catch(e){}
+})();
+})();
+</script></body></html>
