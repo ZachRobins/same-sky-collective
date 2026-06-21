@@ -53,7 +53,7 @@ html:not(.js) .bar nav{position:static;flex-direction:row;max-height:none;opacit
 @keyframes drop{0%{transform:translateY(-6px);opacity:0}40%{opacity:1}100%{transform:translateY(12px);opacity:0}}
 @media(prefers-reduced-motion:reduce){.cue span{animation:none;} html{scroll-behavior:auto;} *{transition:none !important;}}
 section{padding:4vh 0;}
-.reveal{animation:ssrise .7s ease both;} @keyframes ssrise{from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none}} @media(prefers-reduced-motion:reduce){.reveal{animation:none;}}
+.reveal{animation:ssrise .7s ease both;} @keyframes ssrise{from{transform:translateY(14px)} to{transform:none}} @media(prefers-reduced-motion:reduce){.reveal{animation:none;}}
 .kicker{display:inline-block;font-family:'Quicksand';font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--turq);margin-bottom:.9rem;}
 h2.big{font-size:clamp(1.9rem,5vw,3rem);max-width:22ch;margin-bottom:.9rem;} .lead{font-size:clamp(1.05rem,2.1vw,1.25rem);max-width:46ch;color:var(--soft);}
 .stat{text-align:center;} .stat .n{font-family:'Quicksand';font-weight:700;font-size:clamp(6rem,22vw,15rem);line-height:.85;} .stat p{max-width:26ch;margin:.6rem auto 0;color:var(--soft);}
