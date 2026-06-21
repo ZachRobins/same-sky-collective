@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className+=' js';</script>
 <title>Same Sky Collective — home v4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Caveat:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -14,18 +15,34 @@ html{scroll-behavior:smooth;background:var(--cream);} body{font-family:'Source S
 .side{position:fixed;top:0;bottom:0;width:60px;z-index:6;background:url(ssc-flowers-side.jpg) repeat-y;background-size:60px auto;pointer-events:none;box-shadow:0 0 22px rgba(42,38,50,.10);}
 .side.l{left:0;} .side.r{right:0;transform:scaleX(-1);}
 @media(min-width:761px){body{padding:0 60px;}}
-@media(max-width:760px){.side{width:18px;} body{padding:0 18px;}}
+@media(max-width:760px){.side{width:14px;} body{padding:0 14px;}}
+@media(max-width:430px){.side{display:none;} body{padding:0;}}
 h1,h2,h3,h4,.brandmark{font-family:'Quicksand',sans-serif;font-weight:700;line-height:1.1;color:var(--ink);}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem;} a{color:var(--blue);} img{max-width:100%;display:block;}
-.draft{position:fixed;top:0;left:0;right:0;z-index:30;text-align:center;font-size:.8rem;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);color:#9a5a12;padding:.4rem 1rem;border-bottom:1px solid rgba(0,0,0,.06);}
-header.bar{position:fixed;top:28px;left:0;right:0;z-index:20;transition:box-shadow .3s;background:rgba(253,248,240,.92);backdrop-filter:blur(8px);}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.5rem;}
+header.bar{position:fixed;top:0;left:0;right:0;z-index:20;transition:box-shadow .3s;background:rgba(253,248,240,.92);backdrop-filter:blur(8px);}
+.bar .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.5rem;}
 .bar.scrolled{background:rgba(253,248,240,.92);backdrop-filter:blur(8px);box-shadow:0 2px 18px rgba(42,38,50,.08);}
 .logo-link{display:flex;align-items:center;gap:.6rem;text-decoration:none;} .logo-link img{height:40px;border-radius:6px;} .logo-link .brandmark{font-size:1.05rem;}
 .bar nav{display:flex;gap:1.5rem;align-items:center;} .bar nav a{color:var(--ink);text-decoration:none;font-weight:600;font-family:'Quicksand';} .bar nav a:hover{color:var(--turq);}
 .bar .pill{background:var(--mag);color:#fff !important;padding:.4rem 1.1rem;border-radius:999px;}
-@media(max-width:820px){.bar nav a:not(.pill){display:none;} .logo-link .brandmark{display:none;}}
+.navtoggle{display:none;width:44px;height:44px;border:none;background:transparent;cursor:pointer;padding:10px;margin:-10px -8px -10px 0;border-radius:10px;color:var(--ink);}
+.navtoggle:focus-visible{outline:2px solid var(--turq);outline-offset:2px;}
+.navtoggle span{display:block;width:24px;height:2px;margin:5px 0;background:currentColor;border-radius:2px;transition:transform .25s ease,opacity .2s ease;}
+.navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:820px){
+  .logo-link .brandmark{display:none;}
+  .navtoggle{display:block;}
+  .bar nav{position:absolute;top:100%;right:0;left:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(253,248,240,.98);backdrop-filter:blur(8px);box-shadow:0 14px 26px rgba(42,38,50,.12);border-top:1px solid rgba(0,0,0,.06);padding:.4rem .9rem .9rem;max-height:0;overflow:hidden;opacity:0;visibility:hidden;transition:max-height .3s ease,opacity .25s ease,padding .3s ease;}
+  .bar nav.open{max-height:80vh;opacity:1;visibility:visible;}
+  .bar nav a{display:flex;align-items:center;min-height:48px;padding:.2rem .6rem;border-bottom:1px solid rgba(0,0,0,.05);font-size:1.05rem;}
+  .bar nav a:last-child{border-bottom:none;}
+  .bar nav a.pill{justify-content:center;margin-top:.7rem;min-height:48px;}
+}
+html:not(.js) .navtoggle{display:none;}
+html:not(.js) .bar nav{position:static;flex-direction:row;max-height:none;opacity:1;visibility:visible;overflow:visible;background:none;box-shadow:none;border:none;padding:0;}
 .hero{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5.5rem 1.5rem 2rem;}
 .hero .brandmark{font-size:clamp(2.4rem,7vw,4.4rem);margin-bottom:.4rem;}
 .hero h1{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:500;max-width:18ch;margin:0 auto .7rem;color:var(--ink);}
@@ -34,11 +51,14 @@ header.bar{position:fixed;top:28px;left:0;right:0;z-index:20;transition:box-shad
 .cue{margin-top:1.7rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.3em;color:var(--soft);}
 .cue span{display:block;width:1px;height:36px;margin:.5rem auto 0;background:linear-gradient(var(--turq),transparent);animation:drop 2.3s ease-in-out infinite;}
 @keyframes drop{0%{transform:translateY(-6px);opacity:0}40%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.cue span{animation:none;} html{scroll-behavior:auto;} *{transition:none !important;}}
 section{padding:4vh 0;}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;} .reveal.in{opacity:1;transform:none;}
+html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;} html.js .reveal.in{opacity:1;transform:none;}
 .kicker{display:inline-block;font-family:'Quicksand';font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--turq);margin-bottom:.9rem;}
 h2.big{font-size:clamp(1.9rem,5vw,3rem);max-width:22ch;margin-bottom:.9rem;} .lead{font-size:clamp(1.05rem,2.1vw,1.25rem);max-width:46ch;color:var(--soft);}
 .stat{text-align:center;} .stat .n{font-family:'Quicksand';font-weight:700;font-size:clamp(6rem,22vw,15rem);line-height:.85;} .stat p{max-width:26ch;margin:.6rem auto 0;color:var(--soft);}
+#stat70{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+html.js #stat70{--fill:0%;background:linear-gradient(to top,#15b6bd 0%,#3a9fd8 var(--fill),#e7e0d2 var(--fill));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:1.8rem;} @media(max-width:760px){.cards3{grid-template-columns:1fr;max-width:460px;margin-inline:auto;}}
 .cards3 .c{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.4rem;} .cards3 .c h4{font-size:1.08rem;margin-bottom:.3rem;} .cards3 .c p{color:var(--soft);font-size:.96rem;}
 .adv .c{overflow:hidden;padding:0;display:flex;flex-direction:column;} .adv .c img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#eee;} .adv .c .cc{padding:1.1rem 1.2rem;}
@@ -59,17 +79,17 @@ h2.big{font-size:clamp(1.9rem,5vw,3rem);max-width:22ch;margin-bottom:.9rem;} .le
 .campaign .meter{height:9px;border-radius:99px;background:#eee;overflow:hidden;margin:.5rem 0 .3rem;} .campaign .meter i{display:block;height:100%;width:57%;background:var(--grad);}
 .qr{display:flex;gap:1rem;align-items:center;margin-top:1rem;} .qr #qr{padding:8px;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:12px;line-height:0;} .qr #qr img,.qr #qr canvas{display:block;}
 .note{background:#fff7ef;border:1px dashed var(--orange);border-radius:10px;padding:.7rem 1rem;font-size:.88rem;color:#9a5a12;margin-top:1rem;}
-.btn{display:inline-block;font-family:'Quicksand';font-weight:700;text-decoration:none;border-radius:999px;padding:.8rem 1.7rem;} .btn-mag{background:var(--mag);color:#fff;} .btn-ghost{border:2px solid var(--turq);color:var(--turq);margin-left:.4rem;}
+.btn{display:inline-block;font-family:'Quicksand';font-weight:700;text-decoration:none;border-radius:999px;padding:.8rem 1.7rem;margin-top:.4rem;} .btn-mag{background:var(--mag);color:#fff;} .btn-ghost{border:2px solid var(--turq);color:var(--turq);margin-left:.4rem;}
 footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;padding:3rem 0;} footer .wrap{display:grid;grid-template-columns:2fr 1fr;gap:1.6rem;} @media(max-width:600px){footer .wrap{grid-template-columns:1fr;}}
 .land{font-style:italic;color:var(--soft);font-size:.92rem;max-width:44ch;} .fine{font-size:.85rem;color:var(--soft);margin-top:.7rem;} footer a{color:var(--blue);text-decoration:none;}
 .social a{display:inline-flex;align-items:center;gap:.5rem;line-height:2.1;} .social svg{flex-shrink:0;color:var(--turq);}
 </style></head><body>
-<div class="draft">Home v4 · fuller scroll restored · light + floral · gerbera flowers &amp; clouds · your logo, art &amp; PayPal QR</div>
-<canvas id="sky"></canvas>
-<div class="side l"></div><div class="side r"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="side l" aria-hidden="true"></div><div class="side r" aria-hidden="true"></div>
 <header class="bar"><div class="wrap">
-<a class="logo-link" href="#top"><span class="brandmark grad">Same Sky Collective</span></a>
-<nav><a href="#story">Story</a><a href="#art">Art</a><a href="#visit">Visit</a><a href="#advocacy">Advocacy</a><a href="#give" class="pill">Donate</a></nav>
+<a class="logo-link" href="#top" aria-label="Same Sky Collective — home"><img src="ssc-logo.jpg" alt=""><span class="brandmark grad" aria-hidden="true">Same Sky Collective</span></a>
+<button class="navtoggle" id="navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="primarynav"><span></span><span></span><span></span></button>
+<nav id="primarynav"><a href="#story">Story</a><a href="#art">Art</a><a href="#visit">Visit</a><a href="#advocacy">Advocacy</a><a href="#give" class="pill">Donate</a></nav>
 </div></header>
 
 <section class="hero" id="top">
@@ -95,7 +115,7 @@ footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;paddi
 </div></div></section>
 
 <section class="stat"><div class="wrap reveal">
-<div class="n grad" id="stat70">0%</div>
+<div class="n" id="stat70">70%</div>
 <p>of every sale goes straight to the artist. Most galleries take half. Artists name and price their own work.</p>
 </div></section>
 
@@ -114,7 +134,7 @@ footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;paddi
 <section id="visit"><div class="wrap reveal"><div class="split">
 <div><span class="kicker">Visit</span><h2 class="big">Part gallery, part living room.</h2>
 <p class="lead">Drop in — no purchase needed. Everyone is welcome; come say hi.</p>
-<p><span class="tag">📍 417 / 419 Tranquille Rd (confirm)</span> <span class="tag">🕙 Most days from 10am</span></p></div>
+<p><span class="tag">📍 417 Tranquille Rd</span> <span class="tag">🕙 Most days from 10am</span></p></div>
 <img class="photo" src="ssc-interior.jpg" alt="Inside the Same Sky Collective studio"></div></div></section>
 
 <section id="advocacy"><div class="wrap reveal">
@@ -154,24 +174,9 @@ footer{background:linear-gradient(180deg,transparent,#fff);margin-top:3rem;paddi
 
 <footer><div class="wrap">
 <div><h4 class="grad" style="font-size:1.2rem;">Same Sky Collective Society</h4>
-<p>Non-profit community art studio &amp; gallery<br>417 / 419 Tranquille Rd, Kamloops BC <span style="color:var(--orange)">(address to confirm)</span></p>
+<p>Non-profit community art studio &amp; gallery<br>417 Tranquille Rd, Kamloops BC</p>
 <p class="land">We gratefully operate on the traditional, unceded territory of the Tk'emlúps te Secwépemc within Secwepemcúl'ecw.</p>
 <p class="fine">We can't offer tax receipts.</p></div>
 <div><h4>Connect</h4><p class="social">
 <a href="https://www.instagram.com/thesameskycollective/" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg> Instagram</a><br>
-<a href="https://www.facebook.com/groups/sameskycollectivesociety/" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg> Facebook</a><br>
-<a href="mailto:sameskycollective@gmail.com" aria-label="Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Email</a>
-</p></div>
-</div></footer>
-
-<script>
-(function(){var c=document.getElementById('sky'),x=c.getContext('2d'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,W,H,dpr,clouds=[],fl=[];
-var COL=['#e5408a','#f47a23','#f7c233','#15b6bd','#7cc24a','#3a9fd8'];
-function size(){dpr=Math.min(devicePixelRatio||1,2);W=c.width=innerWidth*dpr;H=c.height=innerHeight*dpr;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
-function rnd(a,b){return a+Math.random()*(b-a);}
-function mkC(){return{x:rnd(0,W),y:rnd(0,H*0.6),r:rnd(H*0.12,H*0.3),s:rnd(0.03,0.12)*dpr,a:rnd(0.5,0.85)};}
-function mkF(seed){return{x:rnd(0,W),y:seed?rnd(0,H):-30,vy:rnd(0.22,0.6)*dpr,sway:rnd(0.3,0.9),ph:rnd(0,6.3),r:rnd(8,15)*dpr,rot:rnd(0,6.3),vr:rnd(-0.009,0.009),col:COL[(Math.random()*COL.length)|0],a:rnd(0.4,0.7)};}
-function build(){clouds=[];fl=[];var nc=innerWidth<760?4:6,nf=innerWidth<760?5:9;for(var i=0;i<nc;i++)clouds.push(mkC());for(var j=0;j<nf;j++)fl.push(mkF(true));}
-function base(){var g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#eaf4f1');g.addColorStop(1,'#fdf8f0');x.fillStyle=g;x.fillRect(0,0,W,H);}
-function cloud(o){o.x+=o.s;if(o.x-o.r>W)o.x=-o.r;var rg=x.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);rg.addColorStop(0,'rgba(255,255,255,'+o.a*0.6+')');rg.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=rg;x.beginPath();x.ellipse(o.x,o.y,o.r,o.r*0.5,0,0,6.2832);x.fill();}
-function daisy(p){x.save();x.translate(p.x,p.y);x.rotate(p.rot);x.globalAlpha=p.a;var n=13;for(var 
+<a hr
