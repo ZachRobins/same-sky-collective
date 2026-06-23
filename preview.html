@@ -59,7 +59,7 @@ h2.big{font-size:clamp(1.9rem,5vw,3rem);max-width:22ch;margin-bottom:.9rem;} .le
 .stat{text-align:center;} .stat .n{font-family:'Quicksand';font-weight:700;font-size:clamp(6rem,22vw,15rem);line-height:.85;} .stat p{max-width:26ch;margin:.6rem auto 0;color:var(--soft);}
 #stat70{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
 .statwrap{position:relative;display:inline-block;line-height:.85;}
-#statfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+#statfx{position:absolute;top:-12%;left:-6%;width:112%;height:124%;pointer-events:none;}
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:1.8rem;} @media(max-width:760px){.cards3{grid-template-columns:1fr;max-width:460px;margin-inline:auto;}}
 .cards3 .c{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.4rem;} .cards3 .c h4{font-size:1.08rem;margin-bottom:.3rem;} .cards3 .c p{color:var(--soft);font-size:.96rem;}
 .adv .c{overflow:hidden;padding:0;display:flex;flex-direction:column;} .adv .c img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#eee;} .adv .c .cc{padding:1.1rem 1.2rem;}
@@ -213,34 +213,37 @@ var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').match
   }catch(e){}
 })();
 
-/* Sticky-header shadow + 70% "flowers fill the number" (the number itself is always-visible CSS text underneath) */
+/* Sticky-header shadow + 70% "flowers fill the number" — number AND flowers are both drawn on the canvas so they align perfectly; the CSS #stat70 text stays as the always-visible fallback if this script never runs */
 (function(){
   try{
     var bar=document.querySelector('.bar');
-    var stat=document.getElementById('stat70'),fx=document.getElementById('statfx'),filled=false;
+    var stat=document.getElementById('stat70'),fx=document.getElementById('statfx');
+    var x=(fx&&fx.getContext)?fx.getContext('2d'):null;
     var COLF=['#e5408a','#f47a23','#f7c233','#15b6bd','#7cc24a','#3a9fd8','#8a54c4'];
-    function daisy(x,px,py,r,rot,col){if(r<=0)return;x.save();x.translate(px,py);x.rotate(rot);var n=12,j;for(j=0;j<n;j++){x.rotate(6.2832/n);x.beginPath();x.ellipse(0,-r,r*0.18,r,0,0,6.2832);x.fillStyle=col;x.fill();}x.beginPath();x.arc(0,0,r*0.4,0,6.2832);x.fillStyle='#6b431d';x.fill();x.beginPath();x.arc(0,0,r*0.26,0,6.2832);x.fillStyle='#d2a23f';x.fill();x.restore();}
-    function fillStat(){
-      if(filled||!stat||!fx||reduce)return;filled=true;
-      var x=fx.getContext('2d');if(!x)return;
-      var dpr=Math.min(devicePixelRatio||1,2),W=stat.clientWidth,H=stat.clientHeight;
-      fx.width=W*dpr;fx.height=H*dpr;x.scale(dpr,dpr);
-      var fs=parseFloat(getComputedStyle(stat).fontSize)||120;
-      x.font='700 '+fs+'px Quicksand, sans-serif';x.textAlign='center';x.textBaseline='middle';
-      var tw=x.measureText('70%').width,L=W/2-tw/2-6,R=W/2+tw/2+6,T=H/2-fs*0.42,B=H/2+fs*0.42,fl=[],i,cnt=Math.max(46,Math.round(tw/7));
+    var W,H,dpr,fs,started=false,ready=false;
+    function daisy(px,py,r,rot,col){if(r<=0)return;x.save();x.translate(px,py);x.rotate(rot);var n=12,j;for(j=0;j<n;j++){x.rotate(6.2832/n);x.beginPath();x.ellipse(0,-r,r*0.18,r,0,0,6.2832);x.fillStyle=col;x.fill();}x.beginPath();x.arc(0,0,r*0.4,0,6.2832);x.fillStyle='#6b431d';x.fill();x.beginPath();x.arc(0,0,r*0.26,0,6.2832);x.fillStyle='#d2a23f';x.fill();x.restore();}
+    function sz(){dpr=Math.min(devicePixelRatio||1,2);W=fx.clientWidth;H=fx.clientHeight;fx.width=W*dpr;fx.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);fs=parseFloat(getComputedStyle(stat).fontSize)||120;}
+    function grad(){var g=x.createLinearGradient(W*0.16,0,W*0.84,0);g.addColorStop(0,'#15b6bd');g.addColorStop(0.52,'#7cc24a');g.addColorStop(1,'#3a9fd8');return g;}
+    function drawNum(){x.font='700 '+fs+'px Quicksand, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle=grad();x.fillText('70%',W/2,H/2);}
+    function shape(){x.font='700 '+fs+'px Quicksand, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.fillText('70%',W/2,H/2);}
+    function takeover(){if(!x||!stat||!fx)return;sz();x.clearRect(0,0,W,H);drawNum();stat.style.visibility='hidden';ready=true;}
+    function fill(){if(started||reduce||!ready)return;started=true;
+      x.font='700 '+fs+'px Quicksand, sans-serif';var tw=x.measureText('70%').width,L=W/2-tw/2-8,R=W/2+tw/2+8,T=H/2-fs*0.46,B=H/2+fs*0.46,fl=[],i,cnt=Math.max(50,Math.round(tw/7));
       for(i=0;i<cnt;i++)fl.push({x:L+Math.random()*(R-L),y:T+Math.random()*(B-T),r:fs*0.045+Math.random()*fs*0.06,rot:Math.random()*6.3,col:COLF[(Math.random()*COLF.length)|0]});
-      function shape(){x.font='700 '+fs+'px Quicksand, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.fillText('70%',W/2,H/2);}
       var t0=performance.now();
-      (function frame(now){
-        var p=Math.min(1,(now-t0)/2300),e=1-Math.pow(1-p,3),level=B-(B-T+fs*0.14)*e;
+      (function frame(now){var p=Math.min(1,(now-t0)/2300),e=1-Math.pow(1-p,3),level=B-(B-T+fs*0.16)*e;
         x.clearRect(0,0,W,H);
-        fl.forEach(function(f){if(f.y>level){var b=Math.min(1,(f.y-level)/(fs*0.1));daisy(x,f.x,f.y,f.r*b,f.rot,f.col);}});
-        x.globalCompositeOperation='destination-in';shape();x.globalCompositeOperation='source-over';
+        fl.forEach(function(f){if(f.y>level){var b=Math.min(1,(f.y-level)/(fs*0.1));daisy(f.x,f.y,f.r*b,f.rot,f.col);}});
+        x.globalCompositeOperation='destination-in';shape();
+        x.globalCompositeOperation='destination-over';drawNum();
+        x.globalCompositeOperation='source-over';
         if(p<1)requestAnimationFrame(frame);
       })(performance.now());
     }
-    function onScroll(){if(bar)bar.classList.toggle('scrolled',(window.pageYOffset||0)>40);if(stat&&!filled&&stat.getBoundingClientRect().top<innerHeight*0.78)fillStat();}
+    if(x)takeover();
+    function onScroll(){if(bar)bar.classList.toggle('scrolled',(window.pageYOffset||0)>40);if(ready&&!started&&!reduce&&stat.getBoundingClientRect().top<innerHeight*0.78)fill();}
     addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',function(){try{if(!x||!ready)return;sz();x.clearRect(0,0,W,H);drawNum();}catch(e){}});
     onScroll();
   }catch(e){}
 })();
